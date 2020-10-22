@@ -14,7 +14,7 @@ public class ConnectionClass {
 
     String url = "jdbc:mysql://34.121.163.145:3306/test";
     String usnm = "root";
-    String pswd = "MommyDommy";
+    String pswd = "MommyMoney";
 
     @SuppressLint("NewApi")
     public Connection CONN() {
@@ -30,7 +30,7 @@ public class ConnectionClass {
 
             conn = DriverManager.getConnection(url, usnm, pswd);
 
-            conn = DriverManager.getConnection(ConnURL);
+            //conn = DriverManager.getConnection(ConnURL);
         } catch (SQLException se) {
             Log.e("ERRO", se.getMessage());
         } catch (Exception e) {

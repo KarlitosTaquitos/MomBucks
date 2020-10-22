@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     if (con == null)
                         z = "Please check your internet connection";
                     else {
-                        String query = "insert into test values (DEFAULT, '" + userStr + "', '" + passStr + "');";
+                        String query = "insert into users values (DEFAULT, '" + userStr + "', '" + passStr + "');";
                         System.out.print(query);
                         Statement stmt = con.createStatement();
                         stmt.executeUpdate(query);
