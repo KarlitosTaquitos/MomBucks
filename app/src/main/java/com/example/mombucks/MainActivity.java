@@ -140,11 +140,11 @@ public class MainActivity extends AppCompatActivity {
                         ResultSet rs = stmt.executeQuery(query);
 
                         rs.first();
-                        Log.e("PASSWORD", rs.getString("password"));
                         if (rs.getString("password").equals(passStr))
-                            z = "Login Successful";
+                        { z = "Login Successful"; isSuccess = true; }
+
                         else z = "Password Incorrect";
-                        isSuccess = true;
+
                     }
                 } catch (Exception e) {
                     isSuccess = false;
