@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class MainActivity extends AppCompatActivity {
@@ -75,13 +76,24 @@ public class MainActivity extends AppCompatActivity {
                     if (con == null)
                         z = "Please check your internet connection";
                     else {
-                        String query = "insert into users values (DEFAULT, '" + userStr + "', '" + passStr + "');";
-                        System.out.print(query);
-                        Statement stmt = con.createStatement();
-                        stmt.executeUpdate(query);
+                        try {
+                            z = "That username is already in use";
 
-                        z = "Register Successful";
-                        isSuccess = true;
+                            String checkQ = "select * from users where username = '" + userStr + "';";
+                            Statement checkS = con.createStatement();
+                            ResultSet checkR = checkS.executeQuery(checkQ);
+
+                            checkR.first();
+                            if (checkR.getString("username").equals(userStr));
+                        } catch (Exception x) {
+                            String query = "insert into users values (DEFAULT, '" + userStr + "', '" + passStr + "');";
+                            System.out.print(query);
+                            Statement stmt = con.createStatement();
+                            stmt.executeUpdate(query);
+
+                            z = "Register Successful";
+                            isSuccess = true;
+                        }
                     }
                 } catch (Exception e) {
                     isSuccess = false;
@@ -94,8 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            if (isSuccess)
-                Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
 
             progressDialog.hide();
         }
@@ -132,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("PASSWORD", rs.getString("password"));
                         if (rs.getString("password").equals(passStr))
                             z = "Login Successful";
+                        else z = "Password Incorrect";
                         isSuccess = true;
                     }
                 } catch (Exception e) {
@@ -146,8 +158,10 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
+            Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
+
             if (isSuccess)
-                Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
+                /*Go to next screen or something*/;
 
             progressDialog.hide();
         }
