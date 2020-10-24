@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         connection = new ConnectionClass();
         progressDialog = new ProgressDialog(this);
 
+        //Make listener for register button
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Make listener for login button
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,10 +70,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... string) {
+
+            //Check if they entered something in every field
             if (userStr.trim().equals("") || passStr.trim().equals(""))
                 z = "Please enter all fields";
             else {
                 try {
+
+                    //Connect to the server
                     Connection con = connection.CONN();
                     if (con == null)
                         z = "Please check your internet connection";
@@ -79,13 +85,17 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             z = "That username is already in use";
 
+                            //Checks if the username they want to register is already in the database
                             String checkQ = "select * from users where username = '" + userStr + "';";
                             Statement checkS = con.createStatement();
                             ResultSet checkR = checkS.executeQuery(checkQ);
 
                             checkR.first();
+                            //Throws an error if there's no match for the username
                             if (checkR.getString("username").equals(userStr));
                         } catch (Exception x) {
+
+                            //If it throws that error, we make a new user
                             String query = "insert into users values (DEFAULT, '" + userStr + "', '" + passStr + "');";
                             System.out.print(query);
                             Statement stmt = con.createStatement();
@@ -126,26 +136,34 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... string) {
+
+            //Checks if the user entered something in all fields
             if (userStr.trim().equals("") || passStr.trim().equals(""))
                 z = "Please enter all fields";
             else {
                 try {
+
+                    //Connects to database
                     Connection con = connection.CONN();
                     if (con == null)
                         z = "Please check your internet connection";
                     else {
+
+                        //Gets the user with provided username and tests the password
                         String query = "select * from users where username = '" + userStr + "';";
                         Log.e("QUERY", query);
                         Statement stmt = con.createStatement();
                         ResultSet rs = stmt.executeQuery(query);
 
                         rs.first();
+                        //Throws error if the username doesn't exist
                         if (rs.getString("password").equals(passStr)) {
                             z = "Login Successful";
                             isSuccess = true;
                         } else z = "Password Incorrect";
                     }
                 } catch (SQLException se) {
+                    //Lets them know the username they entered isn't in the database
                     z = "That username doesn't exist";
                 } catch (Exception e) {
                     isSuccess = false;
