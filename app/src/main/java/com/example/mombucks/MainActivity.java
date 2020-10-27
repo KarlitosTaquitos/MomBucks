@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                         } catch (Exception x) {
 
                             //If it throws that error, we make a new user
-                            String query = "insert into users values (DEFAULT, '" + userStr + "', '" + passStr + "');";
+                            String query = "insert into users values (DEFAULT, DEFAULT, '" + userStr + "', '" + passStr + "', DEFAULT, 0);";
                             System.out.print(query);
                             Statement stmt = con.createStatement();
                             stmt.executeUpdate(query);
