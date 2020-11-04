@@ -8,10 +8,15 @@
 
     <Button
         android:id="@+id/canceButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:background="@drawable/button_theme"
+        android:layout_width="91dp"
+        android:layout_height="44dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/ic_launcher_background"
         android:text="Cancel" />
 
     <TextView
@@ -21,7 +26,7 @@
         android:layout_below="@+id/canceButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="12dp"
-        android:background="@drawable/button_theme"
+        android:background="@drawable/ic_launcher_background"
         android:fontFamily="sans-serif-medium"
         android:gravity="center_vertical"
         android:text="             CHILD PROFILE"
@@ -52,16 +57,16 @@
 
     <Button
         android:id="@+id/changeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="46dp"
+        android:layout_width="88dp"
+        android:layout_height="47dp"
         android:layout_below="@+id/editTextTextPersonName"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/button_theme"
-        android:text="change"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp" />
+        android:layout_marginRight="20dp"
+        android:background="@drawable/ic_launcher_background"
+        android:text="change" />
 
     <EditText
         android:id="@+id/editTextNumberDecimal"
@@ -93,12 +98,12 @@
 
     <Button
         android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="93dp"
+        android:layout_height="42dp"
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:background="@drawable/button_theme"
+        android:background="@drawable/ic_launcher_background"
         android:text="Save" />
 
 

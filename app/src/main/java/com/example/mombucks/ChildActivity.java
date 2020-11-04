@@ -1,4 +1,4 @@
-package com.mombuck2.addchild113;
+package com.example.mombucks;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -18,18 +18,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class ChildActivity extends AppCompatActivity {
     public Button addChildButton;
     ArrayList<ChildData> itemChildData = new ArrayList<>();
     ChildAdapter adapter;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
-    ConnectionClass2 connectionClass = new ConnectionClass2();
+    ConnectionClass connectionClass = new ConnectionClass();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_child);
         addChildButton = (Button) findViewById(R.id.button);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.hasFixedSize();
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         addChildButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddChild.class);
+                Intent intent = new Intent(ChildActivity.this, AddChild.class);
                 startActivity(intent);
             }
         });
@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
     public class RetrieveChildData extends AsyncTask<String, String, String> {
 
 
-        ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
-        ConnectionClass2 connection = new ConnectionClass2();
+        ProgressDialog progressDialog = new ProgressDialog(ChildActivity.this);
+        ConnectionClass connection = new ConnectionClass();
         String z = "";
         boolean isSuccess = false;
 

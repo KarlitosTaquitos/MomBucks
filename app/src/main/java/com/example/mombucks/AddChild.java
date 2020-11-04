@@ -1,4 +1,4 @@
-package com.mombuck2.addchild113;
+package com.example.mombucks;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -125,7 +125,7 @@ public class AddChild extends AppCompatActivity {
 
 
         ProgressDialog progressDialog = new ProgressDialog(AddChild.this);
-        ConnectionClass2 connection = new ConnectionClass2();
+        ConnectionClass connection = new ConnectionClass();
         String childName, weeklyAllowance;
         String z = "";
         boolean isSuccess = false;
@@ -169,7 +169,7 @@ public class AddChild extends AppCompatActivity {
                         Statement stmt = con.createStatement();
                         stmt.executeUpdate(query);
 
-                        z = "Child Successfully add";
+                        z = "Child Successfully added";
                         isSuccess = true;
                     }
                 }

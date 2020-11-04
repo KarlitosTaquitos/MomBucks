@@ -1,4 +1,4 @@
-package com.mombuck2.addchild113;
+package com.example.mombucks;
 
 public class ChildData {
     public String childProfile;
