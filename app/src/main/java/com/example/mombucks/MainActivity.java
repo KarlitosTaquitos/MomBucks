@@ -3,6 +3,7 @@ package com.example.mombucks;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -179,9 +180,11 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
 
-            if (isSuccess)
-                /*Go to next screen or something*/;
-
+            if (isSuccess) {
+                /*Go to next screen or something*/
+                Intent intent = new Intent(MainActivity.this, ChildActivity.class);
+                startActivity(intent);
+            }
             progressDialog.hide();
         }
     }
