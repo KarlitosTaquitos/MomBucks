@@ -101,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
                         } catch (Exception x) {
 
                             //If it throws that error, we make a new user
-                            String query = "insert into users values (DEFAULT, DEFAULT, '" + userStr + "', '" + passStr + "', DEFAULT, 0);";
-                            System.out.print(query);
+                            String query = "insert into users (`account_type`, `username`, `password`, `money`) values ('parent', '" + userStr + "', '" + passStr + "', 0);";
+                            Log.e("ERROR", query);
                             Statement stmt = con.createStatement();
                             stmt.executeUpdate(query);
 
@@ -122,8 +122,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
-
             progressDialog.hide();
+            if (isSuccess) {
+                Intent intent = new Intent(MainActivity.this, ParentActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, userStr);
+                startActivity(intent);
+           }
+
         }
     }
 
