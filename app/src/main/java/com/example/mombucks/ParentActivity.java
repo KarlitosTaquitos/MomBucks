@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ChildActivity extends AppCompatActivity {
+public class ParentActivity extends AppCompatActivity {
     public Button addChildButton;
     ArrayList<ChildData> itemChildData = new ArrayList<>();
     ChildAdapter adapter;

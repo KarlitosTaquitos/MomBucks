@@ -101,7 +101,7 @@ public class AddChild extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(AddChild.this, MainActivity.class)
+                Intent intent = new Intent(AddChild.this, ParentActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
 
