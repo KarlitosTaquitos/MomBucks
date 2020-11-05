@@ -37,7 +37,7 @@ public class ParentActivity extends AppCompatActivity {
         addChildButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ChildActivity.this, AddChild.class);
+                Intent intent = new Intent(ParentActivity.this, AddChild.class);
                 startActivity(intent);
             }
         });
@@ -51,7 +51,7 @@ public class ParentActivity extends AppCompatActivity {
     public class RetrieveChildData extends AsyncTask<String, String, String> {
 
 
-        ProgressDialog progressDialog = new ProgressDialog(ChildActivity.this);
+        ProgressDialog progressDialog = new ProgressDialog(ParentActivity.this);
         ConnectionClass connection = new ConnectionClass();
         String z = "";
         boolean isSuccess = false;
