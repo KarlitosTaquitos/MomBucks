@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ParentActivity extends AppCompatActivity {
+public class ChildActivity extends AppCompatActivity {
     public Button addChildButton;
     ArrayList<ChildData> itemChildData = new ArrayList<>();
     ChildAdapter adapter;
@@ -39,7 +39,7 @@ public class ParentActivity extends AppCompatActivity {
         addChildButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ParentActivity.this, AddChild.class);
+                Intent intent = new Intent(ChildActivity.this, AddChild.class);
                 startActivity(intent);
             }
         });
@@ -54,7 +54,7 @@ public class ParentActivity extends AppCompatActivity {
     public class RetrieveChildData extends AsyncTask<String, String, String> {
 
 
-        ProgressDialog progressDialog = new ProgressDialog(ParentActivity.this);
+        ProgressDialog progressDialog = new ProgressDialog(ChildActivity.this);
         ConnectionClass connection = new ConnectionClass();
         String z = "";
         boolean isSuccess = false;
@@ -77,9 +77,9 @@ public class ParentActivity extends AppCompatActivity {
                     try {
                         z = "Username not found";
 
-                        //here instead of DEFAULT add parent name here after integrating login activity (IMPORTANT!!!)
+                        //Supposed to show chores instead of kids but didn't think it was important to implement yet
 
-                        String checkQ = "SELECT username,money FROM users WHERE parent='DEFAULT';";
+                        String checkQ = "SELECT username,money FROM users WHERE parent='Addparentnamehere';";
                         Statement checkS = con.createStatement();
                         ResultSet checkR = checkS.executeQuery(checkQ);
                         z = "checkR == null";

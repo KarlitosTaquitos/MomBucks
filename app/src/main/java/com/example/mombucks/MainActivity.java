@@ -25,6 +25,10 @@ public class MainActivity extends AppCompatActivity {
     Button login;
     ProgressDialog progressDialog;
 
+    String accountType;
+
+    public static final String EXTRA_MESSAGE = "com.example.mombucks.MESSAGE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -160,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
                         //Throws error if the username doesn't exist
                         if (rs.getString("password").equals(passStr)) {
                             z = "Login Successful";
+                            accountType = rs.getString("account_type");
                             isSuccess = true;
                         } else z = "Password Incorrect";
                     }
@@ -179,13 +184,22 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
+            progressDialog.hide();
 
             if (isSuccess) {
                 /*Go to next screen or something*/
-                Intent intent = new Intent(MainActivity.this, ParentActivity.class);
-                startActivity(intent);
+                Intent intent;
+                if (accountType.equals("parent")) {
+                    intent = new Intent(MainActivity.this, ParentActivity.class);
+                    intent.putExtra(EXTRA_MESSAGE, userStr);
+                    startActivity(intent);
+                }
+                else if (accountType.equals("child")) {
+                    intent = new Intent(MainActivity.this, ChildActivity.class);
+                    intent.putExtra(EXTRA_MESSAGE, userStr);
+                    startActivity(intent);
+                }
             }
-            progressDialog.hide();
         }
     }
 }
