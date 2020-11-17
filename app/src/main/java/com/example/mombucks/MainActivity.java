@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (isSuccess) {
                 /*Go to next screen or something*/
-                Intent intent = new Intent(MainActivity.this, ParentActivity.class);
+                Intent intent = new Intent(MainActivity.this, ParentView.class);
                 startActivity(intent);
             }
             progressDialog.hide();

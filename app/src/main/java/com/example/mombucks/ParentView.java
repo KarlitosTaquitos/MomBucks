@@ -28,7 +28,7 @@ public class ParentView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.parent_view);
         addChildButton = (Button) findViewById(R.id.button);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.hasFixedSize();
@@ -36,7 +36,7 @@ public class ParentView extends AppCompatActivity {
         addChildButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddChild.class);
+                Intent intent = new Intent(ParentView.this, AddChild.class);
                 startActivity(intent);
             }
         });
@@ -48,7 +48,7 @@ public class ParentView extends AppCompatActivity {
     public class RetrieveChildData extends AsyncTask<String, String, String> {
 
 
-        ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+        ProgressDialog progressDialog = new ProgressDialog(ParentView.this);
         ConnectionClass connection = new ConnectionClass();
         String z = "";
         boolean isSuccess = false;
