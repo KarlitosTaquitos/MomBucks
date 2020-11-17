@@ -13,7 +13,7 @@
         app:cardCornerRadius="15dp">
         <!--Circular Image view-->
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/childImageView"
+            android:id="@+id/imageView"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_margin="20dp"
@@ -27,8 +27,7 @@
             android:layout_marginStart="150dp"
             android:text="Child name"
             android:textColor="#000"
-            android:textSize="25sp"
-            android:layout_marginLeft="150dp" />
+            android:textSize="25sp" />
 
 
     </androidx.cardview.widget.CardView>

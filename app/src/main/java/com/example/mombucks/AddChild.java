@@ -36,7 +36,7 @@ public class AddChild extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_child);
-        imgView = findViewById(R.id.imageView);
+        imgView = findViewById(R.id.childImageView);
 
         Glide.with(AddChild.this)
                 .load(imageUrl)
@@ -101,7 +101,7 @@ public class AddChild extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(AddChild.this, ParentActivity.class)
+                Intent intent = new Intent(AddChild.this, ParentView.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
 
@@ -163,13 +163,13 @@ public class AddChild extends AppCompatActivity {
                         //Add the parent's username here in parent field
 
                         //TODO:Add the parent's username here in parent field
-                        String query = "insert into users values (DEFAULT, DEFAULT, '" + childName + "', 'DEFAULT ', " +
-                                "+'Addparentnamehere',  '" + weeklyAllowance + "','"+imageUrl+"');";
+                        String query = "insert into users values (DEFAULT, 'child', '" + childName + "', 'DEFAULT ', " +
+                                "+'Addparentnamehere','" + weeklyAllowance + "','" + imageUrl + "','" + weeklyAllowance + "' );";
                         System.out.print(query);
                         Statement stmt = con.createStatement();
                         stmt.executeUpdate(query);
 
-                        z = "Child Successfully added";
+                        z = "Child Successfully add";
                         isSuccess = true;
                     }
                 }
@@ -185,7 +185,7 @@ public class AddChild extends AppCompatActivity {
         protected void onPostExecute(String s) {
             Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
             if (z.equals("Child Successfully add")) {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class)
+                startActivity(new Intent(getApplicationContext(), ParentView.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
                 progressDialog.hide();
 
@@ -193,5 +193,3 @@ public class AddChild extends AppCompatActivity {
         }
     }
 }
-
-

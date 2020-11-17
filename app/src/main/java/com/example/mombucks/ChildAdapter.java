@@ -1,10 +1,12 @@
 package com.example.mombucks;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,7 +31,7 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            circleImageView = itemView.findViewById(R.id.childImageView);
+            circleImageView = itemView.findViewById(R.id.imageView);
             childName = itemView.findViewById(R.id.childNameTextView);
 
         }
@@ -49,19 +51,34 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> 
 
     }
 
+
+    //good now add some child i run the app and add a child you mean?
+    //yes and send me another picture of DB
+    //which application are you using for database mysql workbench
     @Override
-    public void onBindViewHolder(@NonNull ChildAdapter.ViewHolder holder, int position) {
-        ChildData childData = childrenData.get(position);
+    public void onBindViewHolder(@NonNull final ChildAdapter.ViewHolder holder, int position) {
+        final ChildData childData = childrenData.get(position);
         holder.childName.setText(childData.getChildName());
         try {
             Glide.with(context)
                     .load(childData.getChildProfile())
                     .into(holder.circleImageView);
         } catch (Exception e) {
+            Toast.makeText(holder.itemView.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             Glide.with(context)
                     .load("https://images.freeimg.net/rsynced_images/childs-head-963144_1280.png")
                     .into(holder.circleImageView);
         }
+        holder.childName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.itemView.getContext(), ChildProfileActivity.class);
+                holder.itemView.getContext().startActivity(intent
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK)//setFlags creates a new task
+                        .putExtra("childName", childData.childName)
+                        .putExtra("childBalance", childData.childProfile));
+            }
+        });
     }
 
     @Override

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChildProfileActivity">
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/buttom_theme"
+        android:text="back" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="245dp"
+        android:layout_height="41dp"
+        android:layout_below="@+id/backButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/buttom_theme"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center_vertical"
+        android:text="             CHILD PROFILE"
+        android:textColor="#fff"
+        android:textSize="18dp" />
+
+    <ImageView
+        android:id="@+id/childImageView"
+        android:layout_width="149dp"
+        android:layout_height="125dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:visibility="visible"
+        tools:srcCompat="@tools:sample/avatars"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/childImageView"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:text="Name:"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/childNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/childImageView"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="10dp"
+        android:text="XXXXXX"
+        android:textColor="#050505"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/childBalanceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/childNameTextView"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="30dp"
+        android:text="$00.0"
+        android:textColor="#050505"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nameTextView"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:text="Balance:"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/addChoresButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_marginBottom="196dp"
+        android:background="@drawable/buttom_theme"
+        android:text="Add chores" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_marginBottom="123dp"
+        android:background="@drawable/buttom_theme"
+        android:text="Deposit" />
+</RelativeLayout>
+

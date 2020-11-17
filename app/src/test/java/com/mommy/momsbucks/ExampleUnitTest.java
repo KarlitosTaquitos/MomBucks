@@ -1,4 +1,4 @@
-package com.example.mombucks;
+package com.mommy.momsbucks;
 
 import org.junit.Test;
 

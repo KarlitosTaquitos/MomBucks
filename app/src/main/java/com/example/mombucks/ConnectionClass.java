@@ -5,10 +5,12 @@ import android.os.StrictMode;
 import android.util.Log;
 
 import java.sql.Connection;
+import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionClass {
+
 
     String classs = "com.mysql.jdbc.Driver";
 
@@ -32,9 +34,10 @@ public class ConnectionClass {
 
             //conn = DriverManager.getConnection(ConnURL);
         } catch (SQLException se) {
-            Log.e("ERRO", se.getMessage());
+            se.printStackTrace();
         } catch (Exception e) {
-            Log.e("ERRO2", e.getMessage());
+            e.printStackTrace();
+            //  System.out.println("ERRO "+e.getLocalizedMessage());
         }
 
         return conn;

@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,7 +17,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ParentActivity extends AppCompatActivity {
+public class ParentView extends AppCompatActivity {
     public Button addChildButton;
     ArrayList<ChildData> itemChildData = new ArrayList<>();
     ChildAdapter adapter;
@@ -29,7 +28,7 @@ public class ParentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_child);
+        setContentView(R.layout.activity_main);
         addChildButton = (Button) findViewById(R.id.button);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.hasFixedSize();
@@ -37,21 +36,19 @@ public class ParentActivity extends AppCompatActivity {
         addChildButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ParentActivity.this, AddChild.class);
+                Intent intent = new Intent(MainActivity.this, AddChild.class);
                 startActivity(intent);
             }
         });
         RetrieveChildData retrieveChildData = new RetrieveChildData();
         retrieveChildData.execute();
 
-
     }
-
 
     public class RetrieveChildData extends AsyncTask<String, String, String> {
 
 
-        ProgressDialog progressDialog = new ProgressDialog(ParentActivity.this);
+        ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
         ConnectionClass connection = new ConnectionClass();
         String z = "";
         boolean isSuccess = false;
@@ -76,7 +73,7 @@ public class ParentActivity extends AppCompatActivity {
 
                         //here instead of DEFAULT add parent name here after integrating login activity (IMPORTANT!!!)
 
-                        String checkQ = "SELECT username,money FROM users WHERE parent='DEFAULT';";
+                        String checkQ = "SELECT username,money FROM users WHERE parent='Addparentnamehere';";
                         Statement checkS = con.createStatement();
                         ResultSet checkR = checkS.executeQuery(checkQ);
                         z = "checkR == null";
@@ -115,3 +112,4 @@ public class ParentActivity extends AppCompatActivity {
 
     }
 }
+
