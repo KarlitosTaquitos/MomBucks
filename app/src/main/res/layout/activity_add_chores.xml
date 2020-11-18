@@ -41,7 +41,7 @@
         app:layout_constraintVertical_bias="0.054" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/descriptionEditText"
         android:layout_width="317dp"
         android:layout_height="99dp"
         android:layout_marginStart="39dp"
@@ -49,7 +49,7 @@
         android:layout_marginBottom="316dp"
         android:ems="10"
         android:hint="Description"
-        android:inputType="textPersonName"
+        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -88,7 +88,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/applyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="184dp"

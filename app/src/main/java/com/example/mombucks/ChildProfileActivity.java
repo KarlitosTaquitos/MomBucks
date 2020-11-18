@@ -61,7 +61,8 @@ public class ChildProfileActivity extends AppCompatActivity {
         });
         addChoresButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {//.putExtra passes that string childname to addchroes activty
+                //putExtra is used to pass string one axtivty to other activit
                 Intent intent = new Intent(getApplicationContext(), AddChores.class).putExtra("childName", childName);
                 startActivity(intent);
 
