@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -28,25 +29,12 @@
         android:textColor="#fff"
         android:textSize="18dp" />
 
-    <ImageView
-        android:id="@+id/childImageView"
-        android:layout_width="149dp"
-        android:layout_height="125dp"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="20dp"
-        android:visibility="visible"
-        tools:srcCompat="@tools:sample/avatars"
-        tools:visibility="visible" />
-
     <TextView
         android:id="@+id/nameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/childImageView"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="40dp"
         android:text="Name:"
         android:textColor="#000"
         android:textSize="18sp"
@@ -56,9 +44,10 @@
         android:id="@+id/childNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/childImageView"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="10dp"
+        android:layout_below="@+id/nameTextView"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="-24dp"
+        android:layout_toEndOf="@+id/nameTextView"
         android:text="XXXXXX"
         android:textColor="#050505"
         android:textSize="18sp" />
@@ -67,19 +56,22 @@
         android:id="@+id/childBalanceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/childNameTextView"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="30dp"
+        android:layout_below="@+id/nameTextView"
+        android:layout_alignStart="@+id/childNameTextView"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="18dp"
         android:text="$00.0"
         android:textColor="#050505"
         android:textSize="18sp" />
 
     <TextView
+        android:id="@+id/balanceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/nameTextView"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_alignStart="@+id/nameTextView"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="15dp"
         android:text="Balance:"
         android:textColor="#000"
         android:textSize="18sp"
@@ -106,5 +98,13 @@
         android:layout_marginBottom="123dp"
         android:background="@drawable/buttom_theme"
         android:text="Deposit" />
+
+    <ImageView
+        android:id="@+id/childImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center"
+        tools:srcCompat="@tools:sample/avatars"
+        android:layout_gravity="center" />
 </RelativeLayout>
 
