@@ -52,9 +52,7 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> 
     }
 
 
-    //good now add some child i run the app and add a child you mean?
-    //yes and send me another picture of DB
-    //which application are you using for database mysql workbench
+
     @Override
     public void onBindViewHolder(@NonNull final ChildAdapter.ViewHolder holder, int position) {
         final ChildData childData = childrenData.get(position);
