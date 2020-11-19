@@ -110,7 +110,7 @@ public class AddChores extends AppCompatActivity {
               //we do that here but programmatically
                     //below line is equal to this query insert into chore values(DEAFULT,vanessa,kitchen,take out the trrash, false);
                     
-                    String query = "insert into chores values (0,  '" + childName + "','" + chore + "','" + description + "',false);";
+                    String query = "insert into chores values (DEFAULT,  '" + childName + "','" + chore + "','" + description + "',false);";
                     System.out.print(query);
                     Statement stmt = con.createStatement();//here we create a statement where we can Execute the query
                     stmt.executeUpdate(query);//these two lines are responsible for executing queries
@@ -132,10 +132,11 @@ public class AddChores extends AppCompatActivity {
         protected void onPostExecute(String s) {//here after completing the doInBackground we give a message to user whether the data is upadted or not
 
 
-             Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
+            progressDialog.hide();
+
             if (z.equals("chore Successfully add")) {
                 Toast.makeText(AddChores.this, "chore Successfully add", Toast.LENGTH_SHORT).show();
-                progressDialog.hide();
 
             }
         }
