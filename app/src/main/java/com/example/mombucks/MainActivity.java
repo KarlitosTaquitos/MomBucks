@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                             //Throws an error if there's no match for the username
                             if (checkR.getString("username").equals(userStr));
                         } catch (Exception x) {
-//back
+
                             //If it throws that error, we make a new user
                             String query = "insert into users values (DEFAULT, DEFAULT, '" + userStr + "', '" + passStr + "', DEFAULT, 0,DEFAULT,0);";
                             System.out.print(query);

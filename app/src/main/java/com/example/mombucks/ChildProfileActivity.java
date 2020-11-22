@@ -29,7 +29,7 @@ public class ChildProfileActivity extends AppCompatActivity {
         childNameTextView = findViewById(R.id.childNameTextView);
         childBalanceTextView = findViewById(R.id.childBalanceTextView);
 
-        //get the passed child data from main activity.
+        //get the passed child data from parent activity.
         childName = getIntent().getStringExtra("childName");
         childBalance = getIntent().getStringExtra("childBalance");
         childProfile = getIntent().getStringExtra("childProfile");

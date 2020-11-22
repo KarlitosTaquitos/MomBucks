@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class ParentView extends AppCompatActivity {
     public Button addChildButton;
-    ArrayList<ChildData> itemChildData = new ArrayList<>();
+    ArrayList<ChildData> itemChildData = new ArrayList<>();//here itemChildData is a array object of childData now we have to add values using add method
     ChildAdapter adapter;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
@@ -30,9 +30,15 @@ public class ParentView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.parent_view);
         addChildButton = (Button) findViewById(R.id.button);
+        //recyclerView  is used when u have something(data) that is to be 
+        // updated to ui(user interface like buttons textview spinner etc) in a list manner 
+        //so in our case we retrive child name and profile link and store in a array 
+        // and then we display those data in textview and image view using recyler view 
+
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.hasFixedSize();
         layoutManager = new LinearLayoutManager(getApplicationContext());
+        
         addChildButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,13 +79,14 @@ public class ParentView extends AppCompatActivity {
 
                         //here instead of DEFAULT add parent name here after integrating login activity (IMPORTANT!!!)
 
-                        String checkQ = "SELECT username,money FROM users WHERE parent='Addparentnamehere';";
+                        String checkQ = "SELECT username,money FROM users WHERE parent='Addparentnamehere';";//this is the query to retrieve values from DB
                         Statement checkS = con.createStatement();
                         ResultSet checkR = checkS.executeQuery(checkQ);
                         z = "checkR == null";
                         if (checkR != null) {
 
                             while (checkR.next()) {
+
                                 itemChildData.add(new ChildData(checkR.getString("username")
                                         , checkR.getString("money")));
                             }
@@ -103,6 +110,7 @@ public class ParentView extends AppCompatActivity {
         protected void onPostExecute(String s) {
 
             progressDialog.dismiss();
+           //can u see that itemChildData that is array
             adapter = new ChildAdapter(itemChildData, getApplicationContext());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
