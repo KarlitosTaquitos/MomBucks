@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 
 public class ChildProfileActivity extends AppCompatActivity {
     ImageView childProfileImageView;
-    Button backButton, addChoresButton;
+    Button backButton, addChoresButton, depositButton;
     TextView childNameTextView, childBalanceTextView;
     String childName, childBalance, childProfile;
 
@@ -26,6 +26,7 @@ public class ChildProfileActivity extends AppCompatActivity {
         childProfileImageView = findViewById(R.id.childImageView);
         backButton = findViewById(R.id.backButton);
         addChoresButton = findViewById(R.id.addChoresButton);
+        depositButton = findViewById(R.id.button3);
         childNameTextView = findViewById(R.id.childNameTextView);
         childBalanceTextView = findViewById(R.id.childBalanceTextView);
 
@@ -66,6 +67,14 @@ public class ChildProfileActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), AddChores.class).putExtra("childName", childName);
                 startActivity(intent);
 
+            }
+        });
+
+        depositButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AddMoney.class).putExtra("childName", childName);
+                startActivity(intent);
             }
         });
 

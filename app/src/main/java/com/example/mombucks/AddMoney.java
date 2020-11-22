@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -45,20 +46,19 @@ public class AddMoney extends AppCompatActivity {
                 if(!depositEditText.equals("")) // make sure that depositEditText isn't empty
                     try
                     {
-                        deposit = Double.parseDouble(depositEditText.toString());
+                        deposit = Double.parseDouble(depositEditText.getText().toString());
                         // it means it is double
+
+                        depositMoneyTODB depositFunds = new depositMoneyTODB(childName, deposit);
+                        depositFunds.execute();
+
                     } catch (Exception e1) {
                         // this means it is not double
                         e1.printStackTrace();
                     }
-            }
+           }
         });
 
-    }
-
-    private void depositMoney(String childName, double deposit) {
-        depositMoneyTODB depositFunds = new depositMoneyTODB(childName, deposit);
-        depositFunds.execute();
     }
 
     public class depositMoneyTODB extends AsyncTask<String, Double, String> {
@@ -115,7 +115,7 @@ public class AddMoney extends AppCompatActivity {
                     WHERE
                             username = 'Bob';*/
 
-                    String query = "select username, password, balance\n" +
+                   /* String query = "select username, password, balance\n" +
                             "from users\n" +
                             "where username = '" + childName + "';\n" +
                             "update users\n" +
@@ -123,9 +123,19 @@ public class AddMoney extends AppCompatActivity {
                             "where username = '" + childName + "';\n" +
                             "select username, password, balance\n" +
                             "from users\n" +
-                            "where username = '" + childName + "';\n";
+                            "where username = '" + childName + "';\n";*/
+
+                   String query = "select * from users where username = '" + childName + "';";
+
                     System.out.print(query);
                     Statement stmt = con.createStatement();
+                    ResultSet rs = stmt.executeQuery(query);
+
+                    rs.first();
+                    double bal = rs.getDouble("balance");
+                    bal += deposit;
+                    query = "update `users` set `balance` = '" + bal + "' where (`username` = '" + childName + "');";
+                    stmt = con.createStatement();
                     stmt.executeUpdate(query);
 
                     z = "Money successfully added";
