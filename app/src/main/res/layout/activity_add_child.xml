@@ -1,119 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".AddChild">
-
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/canceButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
         android:background="@drawable/buttom_theme"
-        android:text="Cancel" />
+        android:text="@android:string/cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="245dp"
-        android:layout_height="41dp"
-        android:layout_below="@+id/canceButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="12dp"
+        android:layout_height="47dp"
         android:background="@drawable/buttom_theme"
-        android:fontFamily="sans-serif-medium"
-        android:gravity="center_vertical"
-        android:text="             CHILD PROFILE"
-        android:textColor="#fff"
-        android:textSize="18dp" />
+        android:gravity="center"
+        android:text="Child Profile"
+        android:textAllCaps="true"
+        android:textColor="#FFF"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.724"
+        app:layout_constraintStart_toEndOf="@+id/canceButton"
+        app:layout_constraintTop_toTopOf="@+id/canceButton"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
-        android:layout_width="188dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="Enter child name" />
+        android:hint="Enter child username"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/childImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
         android:id="@+id/childImageView"
         android:layout_width="149dp"
         android:layout_height="125dp"
-        android:layout_below="@+id/editTextTextPersonName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="20dp"
-        android:visibility="visible"
-        tools:srcCompat="@tools:sample/avatars"
-        tools:visibility="visible" />
+        app:layout_constraintBottom_toTopOf="@+id/saveButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.32"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/changeButton"
         android:layout_width="wrap_content"
         android:layout_height="46dp"
-        android:layout_below="@+id/editTextTextPersonName"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="20dp"
         android:background="@drawable/buttom_theme"
-        android:text="change" />
+        android:text="Change"
+        app:layout_constraintBottom_toBottomOf="@+id/childImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/childImageView"
+        app:layout_constraintTop_toTopOf="@+id/childImageView" />
 
     <EditText
         android:id="@+id/editTextNumberDecimal"
         android:layout_width="wrap_content"
-        android:layout_height="44dp"
-        android:layout_below="@+id/childImageView"
-        android:layout_marginStart="235dp"
-        android:layout_marginTop="16dp"
-        android:autofillHints=""
-
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
         android:hint="$00.00"
         android:inputType="numberDecimal"
-        android:visibility="visible" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/childImageView"
+        app:layout_constraintVertical_bias="0.515" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/childImageView"
-        android:layout_marginStart="50dp"
-        android:textAlignment="center"
-        android:text="Weekly Allowance"
-        android:textColor="#000"
-        android:textSize="18sp" />
-
-    <Button
-        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="152dp"
-        android:layout_marginEnd="171dp"
-        android:layout_marginBottom="101dp"
-        android:background="@drawable/buttom_theme"
-        android:text="Save" />
+        android:layout_marginEnd="20dp"
+        android:text="Weekly Allowance:"
+        android:textColor="#000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName2"
+        app:layout_constraintEnd_toStartOf="@+id/editTextNumberDecimal"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/childImageView"
+        app:layout_constraintVertical_bias="0.505" />
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/saveButton"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="93dp"
-        android:layout_marginTop="33dp"
-        android:layout_marginEnd="109dp"
-        android:layout_marginBottom="38dp"
         android:ems="10"
+        android:hint="Set Child Password"
         android:inputType="textPersonName"
-        android:hint="Password" />
+        app:layout_constraintBottom_toTopOf="@+id/saveButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/childImageView"
+        app:layout_constraintVertical_bias="0.75" />
 
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttom_theme"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.838" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
