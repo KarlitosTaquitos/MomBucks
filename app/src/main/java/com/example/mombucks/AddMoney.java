@@ -86,7 +86,7 @@ public class AddMoney extends AppCompatActivity {
         protected String doInBackground(String... string) {
             try {
 
-                ConnectionClass con = connection.CONN();
+                Connection con = connection.CONN();
 
                 if (con == null)
 

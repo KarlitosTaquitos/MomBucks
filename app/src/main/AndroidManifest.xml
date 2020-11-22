@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Momsbucks">
         <activity android:name=".ChildProfileActivity"></activity>
+        <activity android:name=".AddMoney"/>
         <activity android:name=".AddChores" />
         <activity android:name=".AddChild" />
         <activity android:name=".ParentView"/>
