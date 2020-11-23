@@ -23,7 +23,7 @@ public class AddChild extends AppCompatActivity {
 
     Button cancelButton, saveButton, imageButton;
     EditText userNameEditText, weeklyAllowanceEditText,childPasswordEditText;
-    String childName, weeklyAllowance, childPassword,
+    String childName, weeklyAllowance, childPassword, username,
             imageurl1 = "https://images.assetsdelivery.com/compings_v2/yupiramos/yupiramos1705/yupiramos170531607.jpg",
             imageurl2 = "https://images.freeimg.net/rsynced_images/childs-head-963144_1280.png",
             imageurl3 = "https://cdn.pixabay.com/photo/2020/10/04/20/05/boy-5627460_1280.png",
@@ -41,6 +41,8 @@ public class AddChild extends AppCompatActivity {
         Glide.with(AddChild.this)
                 .load(imageUrl)
                 .into(imgView);
+
+        username = getIntent().getStringExtra("username");
 
         imageButton = findViewById(R.id.changeButton);
         cancelButton = findViewById(R.id.canceButton);
@@ -107,6 +109,7 @@ public class AddChild extends AppCompatActivity {
 
                 Intent intent = new Intent(AddChild.this, ParentView.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra("username", username);
                 startActivity(intent);
 
             }
@@ -171,7 +174,7 @@ public class AddChild extends AppCompatActivity {
 
                         //TODO:Add the parent's username here in parent field
                         String query = "insert into users values (DEFAULT, 'child', '" + childName + "', '"+ childPassword +
-                                "', 'Addparentnamehere','" + weeklyAllowance + "','" + imageUrl + "','" + weeklyAllowance + "' );";
+                                "', '" + username + "','" + weeklyAllowance + "','" + imageUrl + "','" + weeklyAllowance + "' );";
                         System.out.print(query);
                         Statement stmt = con.createStatement();
                         stmt.executeUpdate(query);
@@ -191,11 +194,12 @@ public class AddChild extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
+            progressDialog.hide();
+
             if (z.equals("Child Successfully add")) {
                 startActivity(new Intent(getApplicationContext(), ParentView.class)
-                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-                progressDialog.hide();
-
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK)
+                        .putExtra("username", username));
             }
         }
     }

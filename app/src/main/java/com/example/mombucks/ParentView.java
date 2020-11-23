@@ -45,6 +45,7 @@ public class ParentView extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ParentView.this, AddChild.class);
+                intent.putExtra("username", username);
                 startActivity(intent);
             }
         });
