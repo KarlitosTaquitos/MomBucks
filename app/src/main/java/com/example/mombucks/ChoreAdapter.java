@@ -12,53 +12,50 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> {
-
+public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ViewHolder>{
     public Context context;
-    public ArrayList<ChildData> childrenData;
+    public ArrayList<ChoreData> choresData;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        CircleImageView circleImageView;
-        TextView childName;
+        //CircleImageView circleImageView;
+        TextView choreName;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            circleImageView = itemView.findViewById(R.id.imageView);
-            childName = itemView.findViewById(R.id.childNameTextView);
+            //circleImageView = itemView.findViewById(R.id.imageView);
+            choreName = itemView.findViewById(R.id.childNameTextView);
 
         }
     }
 
-    ChildAdapter(ArrayList<ChildData> childrenData, Context context) {
-        this.childrenData = childrenData;
+    ChoreAdapter(ArrayList<ChoreData> choresData, Context context) {
+        this.choresData = choresData;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public ChildAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.child_view, parent, false);
-        ViewHolder viewHolder = new ViewHolder(v);
+    public ChoreAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(context).inflate(R.layout.chore_view, parent, false);
+        ChoreAdapter.ViewHolder viewHolder = new ChoreAdapter.ViewHolder(v);
         return viewHolder;
-
     }
 
 
 
     @Override
-    public void onBindViewHolder(@NonNull final ChildAdapter.ViewHolder holder, int position) {
-        final ChildData childData = childrenData.get(position);
-        holder.childName.setText(childData.getChildName());
-        try {
+    public void onBindViewHolder(@NonNull final ChoreAdapter.ViewHolder holder, int position) {
+        final ChoreData data = choresData.get(position);
+        holder.choreName.setText(data.getName());
+        /*try {
             Glide.with(context)
-                    .load(childData.getChildProfile())
+                    .load(data.getDescription())
                     .into(holder.circleImageView);
         } catch (Exception e) {
             Toast.makeText(holder.itemView.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
@@ -75,13 +72,12 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> 
                         .putExtra("childName", childData.childName)
                         .putExtra("childBalance", childData.childProfile));
             }
-        });
+        });*/
     }
 
     @Override
     public int getItemCount() {
-        return childrenData.size();
+        return choresData.size();
     }
-
 
 }

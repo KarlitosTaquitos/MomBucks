@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
     public class loginBtn extends AsyncTask<String, String, String> {
         String userStr = user.getText().toString();
         String passStr = pass.getText().toString();
+        String accountType, moneys;
         String z = "";
         boolean isSuccess = false;
 
@@ -159,6 +160,8 @@ public class MainActivity extends AppCompatActivity {
                         rs.first();
                         //Throws error if the username doesn't exist
                         if (rs.getString("password").equals(passStr)) {
+                            accountType = rs.getString("account_type");
+                            moneys = rs.getString("balance");
                             z = "Login Successful";
                             isSuccess = true;
                         } else z = "Password Incorrect";
@@ -182,7 +185,12 @@ public class MainActivity extends AppCompatActivity {
 
             if (isSuccess) {
                 /*Go to next screen or something*/
-                Intent intent = new Intent(MainActivity.this, ParentView.class);
+                Intent intent;
+                if (accountType.equals("parent"))
+                    intent = new Intent(MainActivity.this, ParentView.class);
+                else intent = new Intent(MainActivity.this, ChildLogInView.class);
+                intent.putExtra("username", userStr);
+                intent.putExtra("balance", moneys);
                 startActivity(intent);
             }
             progressDialog.hide();

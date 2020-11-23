@@ -23,7 +23,7 @@ public class ParentView extends AppCompatActivity {
     ChildAdapter adapter;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
-    ConnectionClass connectionClass = new ConnectionClass();
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,8 @@ public class ParentView extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.hasFixedSize();
         layoutManager = new LinearLayoutManager(getApplicationContext());
+
+        username = getIntent().getStringExtra("username");
         
         addChildButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +81,7 @@ public class ParentView extends AppCompatActivity {
 
                         //here instead of DEFAULT add parent name here after integrating login activity (IMPORTANT!!!)
 
-                        String checkQ = "SELECT username,money FROM users WHERE parent='Addparentnamehere';";//this is the query to retrieve values from DB
+                        String checkQ = "SELECT username,money FROM users WHERE parent='" + username + "';";//this is the query to retrieve values from DB
                         Statement checkS = con.createStatement();
                         ResultSet checkR = checkS.executeQuery(checkQ);
                         z = "checkR == null";
