@@ -182,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
+            progressDialog.hide();
 
             if (isSuccess) {
                 /*Go to next screen or something*/
@@ -193,7 +194,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("balance", moneys);
                 startActivity(intent);
             }
-            progressDialog.hide();
         }
     }
 }

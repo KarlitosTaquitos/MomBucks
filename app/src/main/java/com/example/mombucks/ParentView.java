@@ -82,7 +82,7 @@ public class ParentView extends AppCompatActivity {
 
                         //here instead of DEFAULT add parent name here after integrating login activity (IMPORTANT!!!)
 
-                        String checkQ = "SELECT username,money FROM users WHERE parent='" + username + "';";//this is the query to retrieve values from DB
+                        String checkQ = "SELECT username,balance FROM users WHERE parent='" + username + "';";//this is the query to retrieve values from DB
                         Statement checkS = con.createStatement();
                         ResultSet checkR = checkS.executeQuery(checkQ);
                         z = "checkR == null";
@@ -91,7 +91,7 @@ public class ParentView extends AppCompatActivity {
                             while (checkR.next()) {
 
                                 itemChildData.add(new ChildData(checkR.getString("username")
-                                        , checkR.getString("money")));
+                                        , checkR.getString("balance")));
                             }
                             z = "Data found";
                         }
