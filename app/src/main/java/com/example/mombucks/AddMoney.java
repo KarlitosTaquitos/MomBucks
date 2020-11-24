@@ -22,7 +22,7 @@ public class AddMoney extends AppCompatActivity {
     Button backButton, depositButton, addFundsButton;
     TextView currentFundsText;
     EditText depositEditText, addFundsEditText;
-    String childName, username;
+    String childName, username, childBalance;
     double deposit, funds;
 
     @Override
@@ -36,12 +36,18 @@ public class AddMoney extends AppCompatActivity {
         addFundsButton = findViewById(R.id.addMoneyButton);
         addFundsEditText = findViewById(R.id.addFundsEditText);
         childName = getIntent().getStringExtra("childName");
+        childBalance = getIntent().getStringExtra("childBalance");
         username = getIntent().getStringExtra("username");
+
+        new setCurrentFunds().execute();
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ChildProfileActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        .putExtra("childName", childName)
+                        .putExtra("childBalance", childBalance)
                         .putExtra("username", username);
                 startActivity(intent);
             }
@@ -144,13 +150,9 @@ public class AddMoney extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(String s) {
-
-
             Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
-            if (z.equals("Funds successfully added")) {
-                Toast.makeText(AddMoney.this, "Funds successfully added", Toast.LENGTH_SHORT).show();
-                progressDialog.hide();
-            }
+            progressDialog.hide();
+            new setCurrentFunds().execute();
         }
     }
 
@@ -199,6 +201,7 @@ public class AddMoney extends AppCompatActivity {
                     System.out.print(query2);
                     Statement stmt2 = con.createStatement();
                     ResultSet rs2 = stmt2.executeQuery(query2);
+                    rs2.first();
                     double parentBal = rs2.getDouble("balance");
                     if (parentBal < deposit){
                         z = "Deposit unsuccessful. Not enough funds.";
@@ -208,6 +211,7 @@ public class AddMoney extends AppCompatActivity {
                     else if (parentBal >= deposit)
                     {
                         childBal += deposit;
+                        childBalance = "" + childBal;
                         query = "update `users` set `balance` = '" + childBal + "' where (`username` = '" + childName + "');";
                         stmt = con.createStatement();
                         stmt.executeUpdate(query);
@@ -230,17 +234,48 @@ public class AddMoney extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(String s) {
-
-
             Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
-            if (z.equals("Money successfully added")) {
-                Toast.makeText(AddMoney.this, "Money successfully added", Toast.LENGTH_SHORT).show();
-                progressDialog.hide();
+            progressDialog.hide();
+            new setCurrentFunds().execute();
+        }
+    }
+
+    public class setCurrentFunds extends AsyncTask<String, String, String> {
+        ProgressDialog progressDialog = new ProgressDialog(AddMoney.this);
+        ConnectionClass connection = new ConnectionClass();
+        String z = "";
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... s) {
+            try {
+                Connection con = connection.CONN();
+
+                if (con == null) z = "Please check your connection";
+                else {
+                    String q = "select * from users where username = '" + username + "';";
+                    Statement stmt = con.createStatement();
+                    ResultSet rs = stmt.executeQuery(q);
+
+                    rs.first();
+                    currentFundsText.setText("Available funds: $" + rs.getString("balance"));
+                }
+            } catch (Exception e) {
+                z = e.getMessage();
             }
-            else if (z.equals("Deposit unsuccessful. Not enough funds.")){
-                Toast.makeText(AddMoney.this, "Deposit unsuccessful. Not enough funds.", Toast.LENGTH_SHORT).show();
-                progressDialog.hide();
-            }
+
+            return z;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            if (!z.isEmpty()) Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
+            progressDialog.hide();
         }
     }
 }

@@ -78,6 +78,7 @@ public class ChildProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), AddMoney.class)
                         .putExtra("childName", childName)
+                        .putExtra("childBalance", childBalance)
                         .putExtra("username", username);
                 startActivity(intent);
 
