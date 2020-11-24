@@ -20,6 +20,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ViewHolder>{
     public Context context;
     public ArrayList<ChoreData> choresData;
+    public ChildData childData;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         //CircleImageView circleImageView;
@@ -34,9 +35,10 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ViewHolder>{
         }
     }
 
-    ChoreAdapter(ArrayList<ChoreData> choresData, Context context) {
+    ChoreAdapter(ArrayList<ChoreData> choresData, Context context, ChildData childData) {
         this.choresData = choresData;
         this.context = context;
+        this.childData = childData;
     }
 
     @NonNull
@@ -70,7 +72,9 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ViewHolder>{
                 holder.itemView.getContext().startActivity(intent
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK)//setFlags creates a new task
                         .putExtra("choreName", data.choreName)
-                        .putExtra("description", data.description));
+                        .putExtra("description", data.description)
+                        .putExtra("username", childData.getChildName())
+                        .putExtra("money", childData.getChildProfile()));
             }
         });
     }

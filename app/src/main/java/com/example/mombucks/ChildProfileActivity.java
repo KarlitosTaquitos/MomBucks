@@ -16,7 +16,7 @@ public class ChildProfileActivity extends AppCompatActivity {
     ImageView childProfileImageView;
     Button backButton, addChoresButton;
     TextView childNameTextView, childBalanceTextView;
-    String childName, childBalance, childProfile;
+    String childName, childBalance, childProfile, username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class ChildProfileActivity extends AppCompatActivity {
         childName = getIntent().getStringExtra("childName");
         childBalance = getIntent().getStringExtra("childBalance");
         childProfile = getIntent().getStringExtra("childProfile");
+        username = getIntent().getStringExtra("username");
 
         childNameTextView.setText(childName);
         childBalanceTextView.setText("$" + childBalance);
@@ -55,7 +56,8 @@ public class ChildProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ParentView.class)
-                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        .putExtra("username", username);
                 startActivity(intent);
             }
         });
@@ -63,7 +65,9 @@ public class ChildProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {//.putExtra passes that string childname to addchroes activty
                 //putExtra is used to pass string one axtivty to other activit
-                Intent intent = new Intent(getApplicationContext(), AddChores.class).putExtra("childName", childName);
+                Intent intent = new Intent(getApplicationContext(), AddChores.class)
+                        .putExtra("childName", childName)
+                        .putExtra("username", username);
                 startActivity(intent);
 
             }

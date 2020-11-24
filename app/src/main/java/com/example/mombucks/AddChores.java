@@ -20,7 +20,7 @@ import java.sql.Statement;
 public class AddChores extends AppCompatActivity {
     Button backButton, applyButton;
     EditText descriptionEditText;
-    String childName, chore, description;
+    String childName, chore, description, username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,10 @@ public class AddChores extends AppCompatActivity {
         applyButton = findViewById(R.id.applyButton);
         Spinner dropdown = findViewById(R.id.spinner1);
         descriptionEditText = findViewById(R.id.descriptionEditText);
+
         childName = getIntent().getStringExtra("childName");
+        username = getIntent().getStringExtra("username");
+
         //this is used to collect the passed string .getStringlkExtra collects putExtra
         String[] items = new String[]{"Bedroom", "Bathroom", "Kitchen", "Living Room", "Dinner Table", "Laundry", "Yard", "Pets", "Homework", "Trash", "Car", "Music", "Sports"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
@@ -40,7 +43,8 @@ public class AddChores extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ChildProfileActivity.class)
-                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        .putExtra("username", username);
                 startActivity(intent);
             }
         });

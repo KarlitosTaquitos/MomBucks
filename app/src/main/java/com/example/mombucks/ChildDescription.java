@@ -13,7 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ChildDescription extends AppCompatActivity {
     Button backButton;
     TextView choreNameTextView, descriptionNameTextView, name;
-    String choreName, description, username;
+    String choreName, description;
+    ChildData childData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +27,7 @@ public class ChildDescription extends AppCompatActivity {
 
         choreName = getIntent().getStringExtra("choreName");
         description = getIntent().getStringExtra("description");
-        username = getIntent().getStringExtra("username");
+        childData = new ChildData(getIntent().getStringExtra("username"), getIntent().getStringExtra("money"));
 
         choreNameTextView.setText(choreName);
         descriptionNameTextView.setText(description);
@@ -38,7 +40,8 @@ public class ChildDescription extends AppCompatActivity {
 
                 Intent intent = new Intent(ChildDescription.this, ChildLogInView.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intent.putExtra("username", username);
+                intent.putExtra("username", childData.getChildName());
+                intent.putExtra("balance", childData.getChildProfile());
                 startActivity(intent);
 
             }

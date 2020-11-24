@@ -24,7 +24,7 @@ public class ChildLogInView extends AppCompatActivity {
     ChoreAdapter adapter;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
-    String username, moneys;
+    ChildData data;
 
     TextView name, mone;
 
@@ -41,10 +41,9 @@ public class ChildLogInView extends AppCompatActivity {
         recyclerView.hasFixedSize();
         layoutManager = new LinearLayoutManager(getApplicationContext());
 
-        username = getIntent().getStringExtra("username");
-        moneys = getIntent().getStringExtra("balance");
-        name.setText(username);
-        mone.setText(moneys);
+        data = new ChildData(getIntent().getStringExtra("username"), getIntent().getStringExtra("balance"));
+        name.setText(data.getChildName());
+        mone.setText("$" + data.getChildProfile());
 
         progressDialog = new ProgressDialog(this);
 
@@ -76,7 +75,7 @@ public class ChildLogInView extends AppCompatActivity {
 
                         //here instead of DEFAULT add parent name here after integrating login activity (IMPORTANT!!!)
 
-                        String checkQ = "SELECT chore,description FROM chores WHERE username='" + username + "';";//this is the query to retrieve values from DB
+                        String checkQ = "SELECT chore,description FROM chores WHERE username='" + data.getChildName() + "';";//this is the query to retrieve values from DB
                         Statement checkS = con.createStatement();
                         ResultSet checkR = checkS.executeQuery(checkQ);
                         z = "checkR == null";
@@ -104,7 +103,7 @@ public class ChildLogInView extends AppCompatActivity {
         protected void onPostExecute(String s) {
             progressDialog.dismiss();
 
-            adapter = new ChoreAdapter(itemChoreData, getApplicationContext());
+            adapter = new ChoreAdapter(itemChoreData, getApplicationContext(), data);
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         }

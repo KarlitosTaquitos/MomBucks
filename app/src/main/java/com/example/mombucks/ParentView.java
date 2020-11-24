@@ -114,7 +114,7 @@ public class ParentView extends AppCompatActivity {
 
             progressDialog.dismiss();
            //can u see that itemChildData that is array
-            adapter = new ChildAdapter(itemChildData, getApplicationContext());
+            adapter = new ChildAdapter(itemChildData, getApplicationContext(), username);
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
 

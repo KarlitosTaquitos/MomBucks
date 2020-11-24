@@ -20,6 +20,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> {
 
+    private String username;
     public Context context;
     public ArrayList<ChildData> childrenData;
 
@@ -36,9 +37,10 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> 
         }
     }
 
-    ChildAdapter(ArrayList<ChildData> childrenData, Context context) {
+    ChildAdapter(ArrayList<ChildData> childrenData, Context context, String username) {
         this.childrenData = childrenData;
         this.context = context;
+        this.username = username;
     }
 
     @NonNull
@@ -73,7 +75,8 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> 
                 holder.itemView.getContext().startActivity(intent
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK)//setFlags creates a new task
                         .putExtra("childName", childData.childName)
-                        .putExtra("childBalance", childData.childProfile));
+                        .putExtra("childBalance", childData.childProfile)
+                        .putExtra("username", username));
             }
         });
     }
