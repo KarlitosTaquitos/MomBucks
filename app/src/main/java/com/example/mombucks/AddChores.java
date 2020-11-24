@@ -44,6 +44,8 @@ public class AddChores extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ChildProfileActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        .putExtra("childName", childName)
+                        .putExtra("childBalance", getIntent().getStringExtra("childBalance"))
                         .putExtra("username", username);
                 startActivity(intent);
             }
@@ -119,7 +121,7 @@ public class AddChores extends AppCompatActivity {
                     Statement stmt = con.createStatement();//here we create a statement where we can Execute the query
                     stmt.executeUpdate(query);//these two lines are responsible for executing queries
 
-                    z = "Chore Successfully add";
+                    z = "Chore Successfully added";
                     isSuccess = true;
 
                 }
@@ -139,9 +141,12 @@ public class AddChores extends AppCompatActivity {
             Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
             progressDialog.hide();
 
-            if (z.equals("chore Successfully add")) {
-                Toast.makeText(AddChores.this, "chore Successfully add", Toast.LENGTH_SHORT).show();
-
+            if (z.equals("Chore Successfully added")) {
+                Intent intent = new Intent(getApplicationContext(), ChildProfileActivity.class)
+                        .putExtra("childName", childName)
+                        .putExtra("childBalance", getIntent().getStringExtra("childBalance"))
+                        .putExtra("username", username);
+                startActivity(intent);
             }
         }
     }

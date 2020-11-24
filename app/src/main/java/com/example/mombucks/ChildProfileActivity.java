@@ -68,6 +68,7 @@ public class ChildProfileActivity extends AppCompatActivity {
                 //putExtra is used to pass string one axtivty to other activit
                 Intent intent = new Intent(getApplicationContext(), AddChores.class)
                         .putExtra("childName", childName)
+                        .putExtra("childBalance", childBalance)
                         .putExtra("username", username);
                 startActivity(intent);
 

@@ -174,12 +174,12 @@ public class AddChild extends AppCompatActivity {
 
                         //TODO:Add the parent's username here in parent field
                         String query = "insert into users values (DEFAULT, 'child', '" + childName + "', '"+ childPassword +
-                                "', '" + username + "','" + weeklyAllowance + "','" + imageUrl + "','" + weeklyAllowance + "' );";
+                                "', '" + username + "','" + weeklyAllowance + "','" + imageUrl + "','0' );";
                         System.out.print(query);
                         Statement stmt = con.createStatement();
                         stmt.executeUpdate(query);
 
-                        z = "Child Successfully add";
+                        z = "Child Successfully added";
                         isSuccess = true;
                     }
                 }
