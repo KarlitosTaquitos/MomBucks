@@ -18,7 +18,7 @@ public class ChildData
         return childBalance;
     }
 
-    public ChildData(String childProfile, String childName,String childBalance ) {
+    public ChildData(String childName ,String childBalance,String childProfile ) {
         this.childProfile = childProfile;
         this.childName = childName;
         this.childBalance = childBalance;

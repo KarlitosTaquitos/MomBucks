@@ -198,7 +198,7 @@ public class AddChild extends AppCompatActivity {
 
             if (z.equals("Child Successfully add")) {
                 startActivity(new Intent(getApplicationContext(), ParentView.class)
-                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK)
+                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         .putExtra("username", username));
             }
         }

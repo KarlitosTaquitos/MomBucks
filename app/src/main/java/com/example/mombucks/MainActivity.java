@@ -17,7 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class MainActivity extends AppCompatActivity {
+public class  MainActivity extends AppCompatActivity {
 
     ConnectionClass connection;
     EditText user, pass;
@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
             if (isSuccess) {
                 /*Go to next screen or something*/
                 Intent intent;
-                if (accountType.equals("parent"))
+             if (accountType.equals("parent"))//im getting exception here
                     intent = new Intent(MainActivity.this, ParentView.class);
                 else intent = new Intent(MainActivity.this, ChildLogInView.class);
                 intent.putExtra("username", userStr);

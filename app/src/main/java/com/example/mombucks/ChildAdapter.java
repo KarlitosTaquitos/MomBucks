@@ -73,9 +73,10 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> 
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), ChildProfileActivity.class);
                 holder.itemView.getContext().startActivity(intent
-                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK)//setFlags creates a new task
+                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)//setFlags creates a new task
                         .putExtra("childName", childData.childName)
-                        .putExtra("childBalance", childData.childProfile)
+                        .putExtra("childBalance", childData.childBalance)
+                        .putExtra("childProfile", childData.childProfile)
                         .putExtra("username", username));
             }
         });
