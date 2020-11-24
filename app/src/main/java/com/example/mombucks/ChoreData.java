@@ -2,12 +2,16 @@ package com.example.mombucks;
 
 public class ChoreData {
 
-    private String name;
-    private String description;
+   public String choreName;
+   public String description;
 
-    ChoreData(String n, String d) { name = n; description = d; }
+    public ChoreData(String choreName, String description) {
+        this.choreName = choreName;
+        this.description = description; }
 
-    public String getName() { return name; }
+    public String getChoreName() {
+        return choreName; }
 
-    public String getDescription() { return description; }
+    public String getDescription() {
+        return description; }
 }

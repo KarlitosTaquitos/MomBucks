@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Momsbucks">
-        <activity android:name=".ChildLogInView"></activity>
+        <activity android:name=".ChildDescription"></activity>
+        <activity android:name=".ChildLogInView" />
         <activity android:name=".ChildProfileActivity" />
         <activity android:name=".AddChores" />
         <activity android:name=".AddChild" />

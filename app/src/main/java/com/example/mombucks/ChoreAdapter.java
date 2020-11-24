@@ -29,7 +29,7 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ViewHolder>{
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             //circleImageView = itemView.findViewById(R.id.imageView);
-            choreName = itemView.findViewById(R.id.childNameTextView);
+            choreName = itemView.findViewById(R.id.choreNameTextView);
 
         }
     }
@@ -52,7 +52,7 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull final ChoreAdapter.ViewHolder holder, int position) {
         final ChoreData data = choresData.get(position);
-        holder.choreName.setText(data.getName());
+        holder.choreName.setText(data.getChoreName());
         /*try {
             Glide.with(context)
                     .load(data.getDescription())
@@ -62,17 +62,17 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ViewHolder>{
             Glide.with(context)
                     .load("https://images.freeimg.net/rsynced_images/childs-head-963144_1280.png")
                     .into(holder.circleImageView);
-        }
-        holder.childName.setOnClickListener(new View.OnClickListener() {
+        }**/
+        holder.choreName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(holder.itemView.getContext(), ChildProfileActivity.class);
+                Intent intent = new Intent(holder.itemView.getContext(), ChildDescription.class);
                 holder.itemView.getContext().startActivity(intent
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK)//setFlags creates a new task
-                        .putExtra("childName", childData.childName)
-                        .putExtra("childBalance", childData.childProfile));
+                        .putExtra("choreName", data.choreName)
+                        .putExtra("description", data.description));
             }
-        });*/
+        });
     }
 
     @Override
