@@ -1,7 +1,8 @@
 package com.example.mombucks;
 
-public class ChildData {
-    public String childProfile;
+public class ChildData
+{
+    public String childProfile;//create the required fields here now
     public String childName;
     public String childBalance;
 
@@ -17,14 +18,14 @@ public class ChildData {
         return childBalance;
     }
 
-    public ChildData(String childProfile, String childName, String childBalance) {
+    public ChildData(String childProfile, String childName,String childBalance ) {
         this.childProfile = childProfile;
         this.childName = childName;
         this.childBalance = childBalance;
+        
     }
     public ChildData(String childName, String childProfile ) {
         this.childProfile = childProfile;
         this.childName = childName;
     }
 }
-
