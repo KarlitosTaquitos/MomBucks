@@ -93,8 +93,7 @@ public class ParentView extends AppCompatActivity {
                                 itemChildData.add(new ChildData(checkR.getString("username")
                                         , checkR.getString("balance")
                                         , checkR.getString("profileurl")));
-                                Toast.makeText(ParentView.this, checkR.getString("profileurl"), Toast.LENGTH_SHORT).show();
-                            }
+                                }
                              z = "Data found";
                         }
 
