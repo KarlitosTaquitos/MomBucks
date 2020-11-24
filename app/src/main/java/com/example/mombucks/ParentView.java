@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -68,7 +69,6 @@ public class ParentView extends AppCompatActivity {
             progressDialog.show();
         }
 
-
         @Override
         protected String doInBackground(String... string) {
             try {
@@ -82,7 +82,7 @@ public class ParentView extends AppCompatActivity {
 
                         //here instead of DEFAULT add parent name here after integrating login activity (IMPORTANT!!!)
 
-                        String checkQ = "SELECT username,balance FROM users WHERE parent='" + username + "';";//this is the query to retrieve values from DB
+                        String checkQ = "SELECT username,balance,profileurl FROM users WHERE  account_type='child' AND parent='" + username + "' ;";//this is the query to retrieve values from DB
                         Statement checkS = con.createStatement();
                         ResultSet checkR = checkS.executeQuery(checkQ);
                         z = "checkR == null";
@@ -91,10 +91,13 @@ public class ParentView extends AppCompatActivity {
                             while (checkR.next()) {
 
                                 itemChildData.add(new ChildData(checkR.getString("username")
-                                        , checkR.getString("balance")));
+                                        , checkR.getString("balance")
+                                        , checkR.getString("profileurl")));
+                                Toast.makeText(ParentView.this, checkR.getString("profileurl"), Toast.LENGTH_SHORT).show();
                             }
-                            z = "Data found";
+                             z = "Data found";
                         }
+
 
                     } catch (SQLException throwable) {
                         throwable.printStackTrace();
@@ -113,7 +116,6 @@ public class ParentView extends AppCompatActivity {
         protected void onPostExecute(String s) {
 
             progressDialog.dismiss();
-           //can u see that itemChildData that is array
             adapter = new ChildAdapter(itemChildData, getApplicationContext(), username);
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
